@@ -1,9 +1,18 @@
 package br.edu.faj.poo.ministerio.MinisterioService.entities;
 
-public class Ministro {
-    private double salario;
-   private Ministerio ministerio;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-    public void criarSecretaria() {};
-    public void excluirSecretaria() {};
+@Data
+@AllArgsConstructor
+public class Ministro extends Politico {
+    private double salario;
+    private int ministerio;
+
+    public void representacao() {
+        System.out.print("method representacao not implemented.");
+    };
+    public void despachos() {
+        System.out.print("method despachos not implemented.");
+    };
 }
