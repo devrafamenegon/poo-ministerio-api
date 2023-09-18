@@ -6,13 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Secretaria {
     private int id;
     private String nome;
     private int numFuncionarios;
     private double verba;
-
-    public void executaTarefa() {
-        System.out.print("method executaTarefa not implemented");
-    }
+    private int ministerioId;
 }

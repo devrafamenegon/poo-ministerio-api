@@ -18,7 +18,7 @@ public class MinisterioRepository {
     private JdbcTemplate jdbcTemplate;
 
     public Ministerio create(Ministerio m) throws Exception {
-        String sqlInsert = "INSERT INTO Pessoa (NOME, NUM_FUNCIONARIOS, VERBA) " + "VALUES (?, ?, ?, ?)";
+        String sqlInsert = "INSERT INTO Ministerio (NOME, NUM_FUNCIONARIOS, VERBA) " + "VALUES (?, ?, ?)";
 
         try (
             Connection con = jdbcTemplate.getDataSource().getConnection();
@@ -35,6 +35,7 @@ public class MinisterioRepository {
             if (result == 1) {
                 ResultSet tableKeys = ps.getGeneratedKeys();
                 tableKeys.next();
+
                 m.setId(tableKeys.getInt(1));
                 System.out.println("Ministerio inserido com sucesso:" + m.getNome());
                 return m;
@@ -48,8 +49,8 @@ public class MinisterioRepository {
         Ministerio ministerio = null;
 
         try (
-                Connection con = jdbcTemplate.getDataSource().getConnection();
-                PreparedStatement ps = con.prepareStatement(sqlSelect)
+            Connection con = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps = con.prepareStatement(sqlSelect)
         ) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

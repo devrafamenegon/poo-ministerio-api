@@ -12,11 +12,4 @@ public class Ministerio {
     private String nome;
     private int numFuncionarios;
     private double verba;
-
-    public void criarSecretaria() {
-        System.out.print("method criarSecretaria not implemented.");
-    };
-    public void excluirSecretaria() {
-        System.out.print("method excluirSecretaria not implemented.");
-    };
 }
