@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Secretaria {
-    private int id;
+    private Integer id;
     private String nome;
-    private int numFuncionarios;
-    private double verba;
-    private int ministerioId;
+    private Integer numFuncionarios;
+    private Double verba;
+    private Integer ministerioId;
 }

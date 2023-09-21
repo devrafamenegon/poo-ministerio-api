@@ -18,7 +18,7 @@ public class SecretariaRepository {
     private JdbcTemplate jdbcTemplate;
 
     public Secretaria create(Secretaria secretaria) throws Exception {
-        String sqlInsert = "INSERT INTO Secretaria (NOME, NUM_FUNCIONARIOS, VERBA, MINISTERIO_ID) VALUES (?, ?, ?, ?)";
+        String sqlInsert = "INSERT INTO SECRETARIA (NOME, NUM_FUNCIONARIOS, VERBA, MINISTERIO_ID) VALUES (?, ?, ?, ?)";
 
         try (
                 Connection con = jdbcTemplate.getDataSource().getConnection();
@@ -46,7 +46,7 @@ public class SecretariaRepository {
     }
 
     public Secretaria getById(int id) {
-        String sqlSelect = "SELECT * FROM Secretaria WHERE ID = ?";
+        String sqlSelect = "SELECT * FROM SECRETARIA WHERE ID = ?";
         Secretaria secretaria = null;
 
         try (
@@ -70,14 +70,23 @@ public class SecretariaRepository {
         return secretaria;
     }
 
-    public List<Secretaria> getAll() {
-        String sqlSelectAll = "SELECT * FROM Secretaria";
+    public List<Secretaria> getAll(Integer ministerioId) {
+        String sqlSelectAll = "SELECT * FROM SECRETARIA";
+
+        if (ministerioId != null) {
+            sqlSelectAll += " WHERE MINISTERIO_ID = ?";
+        }
+
         List<Secretaria> secretarias = new ArrayList<>();
 
         try (
                 Connection con = jdbcTemplate.getDataSource().getConnection();
                 PreparedStatement ps = con.prepareStatement(sqlSelectAll)
         ) {
+            if (ministerioId != null) {
+                ps.setInt(1, ministerioId);
+            }
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Secretaria secretaria = new Secretaria();
@@ -95,8 +104,9 @@ public class SecretariaRepository {
         return secretarias;
     }
 
+
     public Secretaria update(Secretaria secretaria) throws Exception {
-        String sqlUpdate = "UPDATE Secretaria SET NOME=?, NUM_FUNCIONARIOS=?, VERBA=?, MINISTERIO_ID=? WHERE ID=?";
+        String sqlUpdate = "UPDATE SECRETARIA SET NOME=?, NUM_FUNCIONARIOS=?, VERBA=?, MINISTERIO_ID=? WHERE ID=?";
 
         try (
                 Connection con = jdbcTemplate.getDataSource().getConnection();
@@ -118,7 +128,7 @@ public class SecretariaRepository {
     }
 
     public void delete(int id) throws Exception {
-        String sqlDelete = "DELETE FROM Secretaria WHERE ID=?";
+        String sqlDelete = "DELETE FROM SECRETARIA WHERE ID=?";
 
         try (
                 Connection con = jdbcTemplate.getDataSource().getConnection();
