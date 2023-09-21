@@ -6,6 +6,6 @@ import lombok.Data;
 public class GetMinisterioDto {
     private String id;
     private String nome;
-    private int numFuncionarios;
-    private double verba;
+    private Integer numFuncionarios;
+    private Double verba;
 }

@@ -18,7 +18,7 @@ public class MinisterioRepository {
     private JdbcTemplate jdbcTemplate;
 
     public Ministerio create(Ministerio m) throws Exception {
-        String sqlInsert = "INSERT INTO Ministerio (NOME, NUM_FUNCIONARIOS, VERBA) " + "VALUES (?, ?, ?)";
+        String sqlInsert = "INSERT INTO MINISTERIO (NOME, NUM_FUNCIONARIOS, VERBA) " + "VALUES (?, ?, ?)";
 
         try (
             Connection con = jdbcTemplate.getDataSource().getConnection();
@@ -45,7 +45,7 @@ public class MinisterioRepository {
     }
 
     public Ministerio getById(int id) {
-        String sqlSelect = "SELECT * FROM Ministerio WHERE ID = ?";
+        String sqlSelect = "SELECT * FROM MINISTERIO WHERE ID = ?";
         Ministerio ministerio = null;
 
         try (
@@ -69,7 +69,7 @@ public class MinisterioRepository {
     }
 
     public List<Ministerio> getAll() {
-        String sqlSelectAll = "SELECT * FROM Ministerio";
+        String sqlSelectAll = "SELECT * FROM MINISTERIO";
         List<Ministerio> ministerios = new ArrayList<>();
 
         try (
@@ -93,7 +93,7 @@ public class MinisterioRepository {
     }
 
     public Ministerio update(Ministerio m) throws Exception {
-        String sqlUpdate = "UPDATE Ministerio SET NOME=?, NUM_FUNCIONARIOS=?, VERBA=? WHERE ID=?";
+        String sqlUpdate = "UPDATE MINISTERIO SET NOME=?, NUM_FUNCIONARIOS=?, VERBA=? WHERE ID=?";
 
         try (
                 Connection con = jdbcTemplate.getDataSource().getConnection();
@@ -114,7 +114,7 @@ public class MinisterioRepository {
     }
 
     public void delete(int id) throws Exception {
-        String sqlDelete = "DELETE FROM Ministerio WHERE ID=?";
+        String sqlDelete = "DELETE FROM MINISTERIO WHERE ID=?";
 
         try (
                 Connection con = jdbcTemplate.getDataSource().getConnection();

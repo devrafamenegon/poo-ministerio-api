@@ -28,12 +28,12 @@ public class MinisterioService {
             throw new Exception("Field nome is required.");
         }
 
-        if (createMinisterioDto.getNumFuncionarios() == 0) {
-            throw new Exception("Field numFuncionarios must to be bigger than zero.");
+        if (createMinisterioDto.getNumFuncionarios() == null) {
+            throw new Exception("Field numFuncionarios is required.");
         }
 
-        if (createMinisterioDto.getVerba() == 0) {
-            throw new Exception("Field verba must to be bigger than zero.");
+        if (createMinisterioDto.getVerba() == null) {
+            throw new Exception("Field verba is required.");
         }
 
         Ministerio ministerio = new Ministerio();
@@ -50,7 +50,7 @@ public class MinisterioService {
         List<Ministerio> ministerios = repository.getAll();
 
         if (ministerios.isEmpty()) {
-            throw new Exception("Ministerios not found");
+            throw new Exception("Ministerios not found.");
         }
 
         return ministerios.stream().map(
@@ -58,25 +58,33 @@ public class MinisterioService {
         ).collect(Collectors.toList());
     }
 
-    public GetMinisterioDto getById(int id) throws Exception {
+    public GetMinisterioDto getById(Integer id) throws Exception {
+        if (id == null) {
+            throw new Exception("Parameter id is required.");
+        }
+
         Ministerio ministerio = repository.getById(id);
         if (ministerio == null) {
-            throw new Exception("Ministerio not found");
+            throw new Exception("Ministerio not found.");
         }
         return modelMapper.map(ministerio, GetMinisterioDto.class);
     }
 
-    public GetMinisterioDto update(int id, UpdateMinisterioDto updateMinisterioDto) throws Exception {
+    public GetMinisterioDto update(Integer id, UpdateMinisterioDto updateMinisterioDto) throws Exception {
+        if (id == null) {
+            throw new Exception("Parameter id is required.");
+        }
+
         if (updateMinisterioDto.getNome() == null || updateMinisterioDto.getNome().trim().isEmpty()) {
             throw new Exception("Field nome is required.");
         }
 
-        if (updateMinisterioDto.getNumFuncionarios() == 0) {
-            throw new Exception("Field numFuncionarios must to be bigger than zero.");
+        if (updateMinisterioDto.getNumFuncionarios() == null) {
+            throw new Exception("Field numFuncionarios is required.");
         }
 
-        if (updateMinisterioDto.getVerba() == 0) {
-            throw new Exception("Field verba must to be bigger than zero.");
+        if (updateMinisterioDto.getVerba() == null) {
+            throw new Exception("Field verba is required.");
         }
 
         if (repository.getById(id) == null) {
@@ -94,7 +102,11 @@ public class MinisterioService {
         return modelMapper.map(ministerio, GetMinisterioDto.class);
     }
 
-    public boolean delete(int id) throws Exception {
+    public boolean delete(Integer id) throws Exception {
+        if (id == null) {
+            throw new Exception("Parameter id is required.");
+        }
+
         if (repository.getById(id) == null) {
             throw new Exception("Ministerio not found.");
         }

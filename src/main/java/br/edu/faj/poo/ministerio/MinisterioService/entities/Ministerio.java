@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ministerio {
-    private int id;
+    private Integer id;
     private String nome;
-    private int numFuncionarios;
-    private double verba;
+    private Integer numFuncionarios;
+    private Double verba;
 }
