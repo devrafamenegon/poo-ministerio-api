@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Politico {
-    private int id;
+    private Integer id;
     private String nome;
     private String partido;
     private Date dataEntrada;
