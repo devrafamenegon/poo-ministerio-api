@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,6 +124,13 @@ public class MinisterioRepository {
                 throw new Exception("Erro ao excluir no banco.");
             }
             System.out.println("Ministerio excluído com sucesso: " + id);
+        } catch (SQLException e) {
+            if (e.getSQLState().equals("23503")) {
+                throw new Exception("Erro de integridade referencial: Não é possível excluir o registro devido a referências em outras tabelas.", e);
+            } else {
+                throw new Exception("Erro ao excluir no banco.", e);
+            }
         }
     }
+
 }

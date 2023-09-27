@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ministros")
+@CrossOrigin(origins = "*")
 public class MinistroController {
     private final MinistroService service;
 
